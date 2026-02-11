@@ -3,87 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dla mojego Okruszka ❤️</title>
+    <title>Walentynki Okruszka ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --pink-bg: #ffe5ec;
-            --mc-red: #ff4d6d;
-            --mc-green: #2ecc71;
-            --dark-text: #2c1810;
+            --val-red: #ff4d6d;
+            --val-pink: #ff8fa3;
+            --bg-gradient: linear-gradient(180deg, #fff0f3 0%, #ffccd5 100%);
         }
 
         body {
             margin: 0; padding: 0; height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: var(--pink-bg);
+            background: var(--bg-gradient);
             font-family: 'Poppins', sans-serif;
             overflow: hidden; touch-action: manipulation;
-            color: var(--dark-text);
         }
 
-        /* --- PŁYWAJĄCE SERCA W TLE --- */
+        /* --- PŁYWAJĄCE SERCA --- */
         .heart-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .bg-heart { position: absolute; color: rgba(255, 77, 109, 0.15); animation: float 7s infinite linear; }
-        @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0.8; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+        .bg-heart { position: absolute; color: rgba(255, 77, 109, 0.2); animation: float 6s infinite linear; }
+        @keyframes float { 
+            0% { transform: translateY(110vh) scale(0.5); opacity: 1; } 
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } 
+        }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            padding: 30px; border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.15);
+            background: rgba(255, 255, 255, 0.96);
+            padding: 30px; border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
             width: 85%; max-width: 380px;
             text-align: center; z-index: 10;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            border: 2px solid white;
         }
-
-        .fade-out { opacity: 0; transform: scale(0.95); }
-        .fade-in { opacity: 1; transform: scale(1); }
 
         #hearts-container {
-            font-size: 2.5rem; margin-bottom: 10px; z-index: 10;
-            letter-spacing: 5px;
+            font-size: 2.2rem; margin-bottom: 10px;
+            letter-spacing: 5px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
         }
 
-        h1 { color: var(--mc-red); font-family: 'Pacifico', cursive; font-size: 2.2rem; margin: 10px 0; }
-        p { font-size: 1.1rem; margin-bottom: 20px; line-height: 1.4; }
-        h2 { font-size: 1.3rem; margin-bottom: 20px; color: var(--dark-text); }
+        h1 { color: var(--val-red); font-family: 'Pacifico', cursive; font-size: 2rem; margin: 10px 0; }
+        p { font-size: 1rem; color: #444; margin-bottom: 20px; }
 
         .options-grid { display: flex; flex-direction: column; gap: 12px; }
         
         button {
-            padding: 16px; font-size: 1.1rem; border: none; border-radius: 18px;
-            cursor: pointer; font-weight: 700; transition: all 0.2s;
-            -webkit-tap-highlight-color: transparent; position: relative; overflow: hidden;
+            padding: 16px; font-size: 1rem; border: none; border-radius: 20px;
+            cursor: pointer; font-weight: 700; transition: 0.2s;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .quiz-btn { background: white; color: var(--mc-red); border: 2px solid #ffb3c1; box-shadow: 0 4px 0 #ffb3c1; }
-        .quiz-btn:active { transform: translateY(4px); box-shadow: 0 0 0 #ffb3c1; }
+        .quiz-btn { background: #fff5f7; color: var(--val-red); border: 2px solid #ffccd5; }
+        .quiz-btn:active { background: #ffccd5; }
 
-        .action-btn { background: var(--mc-red); color: white; width: 100%; box-shadow: 0 5px 0 #c93651; }
+        .action-btn { background: var(--val-red); color: white; width: 100%; box-shadow: 0 5px 0 #c93651; font-size: 1.1rem; }
 
+        /* --- FINAŁ --- */
         #yesBtn {
-            background-color: var(--mc-green); color: white; width: 100%; height: 85px;
-            font-size: 1.4rem; box-shadow: 0 6px 0 #27ae60; display: flex; justify-content: center; align-items: center;
+            background: #2ecc71; color: white; width: 100%; height: 85px;
+            font-size: 1.4rem; box-shadow: 0 6px 0 #27ae60; position: relative; overflow: hidden;
+            animation: pulse 2s infinite;
         }
-        
-        #hold-progress {
-            position: absolute; left: 0; bottom: 0; height: 100%;
-            background: rgba(255,255,255,0.3); width: 0%;
-        }
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.03);} 100% {transform: scale(1);} }
 
-        #noBtn {
-            background: #e74c3c; color: white; padding: 12px 35px;
-            font-size: 1rem; margin-top: 30px; box-shadow: 0 4px 0 #c0392b;
-        }
+        #hold-progress { position: absolute; left: 0; bottom: 0; height: 100%; background: rgba(255,255,255,0.4); width: 0%; }
 
-        .gift-box { font-size: 6rem; cursor: pointer; animation: bounce 1.5s infinite; }
-        @keyframes bounce { 0%, 100% {transform: scale(1);} 50% {transform: scale(1.1);} }
+        #noBtn { background: #e74c3c; color: white; padding: 12px 35px; margin-top: 30px; box-shadow: 0 4px 0 #c0392b; }
+
+        .gift-box { font-size: 6rem; cursor: pointer; animation: wobble 2s infinite; display: inline-block; }
+        @keyframes wobble { 0%, 100% {transform: rotate(0deg);} 25% {transform: rotate(-5deg);} 75% {transform: rotate(5deg);} }
 
         .voucher { 
-            background: #fff; padding: 20px; border: 3px dashed var(--mc-red); 
-            border-radius: 20px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: #fff; padding: 25px; border: 4px dashed var(--val-red); 
+            border-radius: 25px; margin-top: 20px; position: relative;
         }
     </style>
 </head>
@@ -92,10 +85,12 @@
     <div class="heart-bg" id="heart-bg"></div>
     <div id="hearts-container" style="display:none;">❤️❤️❤️</div>
 
-    <div class="container fade-in" id="main-card">
-        <h1>Hej Okruszku! ❤️</h1>
-        <p>Mam dla Ciebie małe wyzwanie... Masz 3 życia. Dasz radę dotrzeć do końca?</p>
-        <button class="action-btn" onclick="startQuiz()">ZACZYNAMY! 🚀</button>
+    <div class="container" id="main-card">
+        <div style="font-size: 3rem;">🌸</div>
+        <h1>Hej Okruszku!</h1>
+        <p>Wiem, że Walentynki są dopiero pojutrze, ale nie mogłem się doczekać! 🌹</p>
+        <p>Zdasz szybki test, żeby odblokować swój prezent?</p>
+        <button class="action-btn" onclick="startQuiz()">Zaczynajmy! 🏹</button>
     </div>
 
     <script>
@@ -103,31 +98,26 @@
         let lives = 3;
         let holdInterval;
         let holdTime = 0;
-        const card = document.getElementById('main-card');
-        const heartsCont = document.getElementById('hearts-container');
 
-        function createBackgroundHearts() {
+        function createHearts() {
             const bg = document.getElementById('heart-bg');
             for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'bg-heart'; heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDelay = Math.random() * -10 + 's';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                bg.appendChild(heart);
+                const h = document.createElement('div');
+                h.className = 'bg-heart'; h.innerHTML = '❤️';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.animationDelay = Math.random() * -10 + 's';
+                h.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                bg.appendChild(h);
             }
         }
 
-        async function switchContent(newHTML) {
-            card.classList.remove('fade-in'); card.classList.add('fade-out');
-            await new Promise(r => setTimeout(r, 250));
-            card.innerHTML = newHTML;
-            card.classList.remove('fade-out'); card.classList.add('fade-in');
+        function updateHearts() {
+            document.getElementById('hearts-container').innerHTML = '❤️'.repeat(lives) + '<span style="opacity:0.2">❤️</span>'.repeat(3 - lives);
         }
 
         function startQuiz() {
             currentQuestion = 0; lives = 3;
-            heartsCont.style.display = 'block';
+            document.getElementById('hearts-container').style.display = 'block';
             updateHearts();
             showQuestion();
         }
@@ -150,96 +140,94 @@
         function showQuestion() {
             if (currentQuestion >= quizData.length) { showProposal(); return; }
             const data = quizData[currentQuestion];
-            const buttons = data.options.map((opt, i) => `<button class="quiz-btn" onclick="check(${i})">${opt}</button>`).join('');
+            const btns = data.options.map((opt, i) => `<button class="quiz-btn" onclick="check(${i})">${opt}</button>`).join('');
             
-            switchContent(`
-                <p style="font-weight:700; color:var(--mc-red)">ZADANIE ${currentQuestion + 1}/${quizData.length}</p>
-                <h2>${data.q}</h2>
-                <div class="options-grid">${buttons}</div>
-            `);
+            document.getElementById('main-card').innerHTML = `
+                <p style="color:var(--val-red); font-weight:700; font-size:0.8rem;">ETAP ${currentQuestion + 1}/${quizData.length}</p>
+                <h2 style="margin-top:0;">${data.q}</h2>
+                <div class="options-grid">${btns}</div>
+            `;
         }
 
-        function check(index) {
-            if (index === quizData[currentQuestion].correct) {
+        function check(idx) {
+            if (idx === quizData[currentQuestion].correct) {
                 currentQuestion++; showQuestion();
             } else {
                 lives--; updateHearts();
                 if (lives <= 0) {
-                    switchContent(`
-                        <h1>Game Over! 👾</h1><p>Zabrakło serduszek!</p>
-                        <button class="action-btn" onclick="startQuiz()">SPRÓBUJ PONOWNIE 🔄</button>`);
+                    document.getElementById('main-card').innerHTML = `
+                        <h2>Ojej! 💔</h2><p>Zabrakło serduszek! Spróbujesz jeszcze raz dla mnie?</p>
+                        <button class="action-btn" onclick="startQuiz()">RESTART 🔄</button>`;
                 } else {
                     if (navigator.vibrate) navigator.vibrate(100);
                 }
             }
         }
 
-        function updateHearts() {
-            heartsCont.innerHTML = '❤️'.repeat(lives) + '<span style="opacity:0.2">❤️</span>'.repeat(3 - lives);
-        }
-
-        async function showProposal() {
-            heartsCont.style.display = 'none';
-            await switchContent(`
-                <h1>Okruszku... ❤️</h1>
-                <p>Jesteś niesamowita! <br> Czy zostaniesz moją Walentynką?</p>
+        function showProposal() {
+            document.getElementById('hearts-container').style.display = 'none';
+            document.getElementById('main-card').innerHTML = `
+                <div style="font-size:3rem;">💌</div>
+                <h1>Okruszku...</h1>
+                <p>Znasz mnie idealnie! Więc teraz... <br><b>Czy zostaniesz moją Walentynką?</b></p>
                 <button id="yesBtn">
                     <div id="hold-progress"></div>
                     <span style="position:relative; z-index:2">PRZYTRZYMAJ: TAK! 🥰</span>
                 </button>
                 <button id="noBtn">Nie</button>
-            `);
-            setupFinal();
+            `;
+            setupHold();
         }
 
-        function setupFinal() {
-            const yesBtn = document.getElementById('yesBtn');
-            const noBtn = document.getElementById('noBtn');
-            const progress = document.getElementById('hold-progress');
+        function setupHold() {
+            const btn = document.getElementById('yesBtn');
+            const no = document.getElementById('noBtn');
+            const prog = document.getElementById('hold-progress');
 
-            const startHold = (e) => {
+            const start = (e) => {
                 e.preventDefault(); holdTime = 0;
                 holdInterval = setInterval(() => {
                     holdTime += 50;
-                    progress.style.width = (holdTime / 2500 * 100) + '%';
+                    prog.style.width = (holdTime / 2500 * 100) + '%';
                     if (holdTime >= 2500) { clearInterval(holdInterval); showGift(); }
                 }, 50);
             };
-            const endHold = () => { clearInterval(holdInterval); holdTime = 0; progress.style.width = '0%'; };
+            const end = () => { clearInterval(holdInterval); holdTime = 0; prog.style.width = '0%'; };
 
-            yesBtn.addEventListener('touchstart', startHold); yesBtn.addEventListener('touchend', endHold);
-            yesBtn.addEventListener('mousedown', startHold); yesBtn.addEventListener('mouseup', endHold);
+            btn.addEventListener('touchstart', start); btn.addEventListener('touchend', end);
+            btn.addEventListener('mousedown', start); btn.addEventListener('mouseup', end);
 
-            noBtn.addEventListener('touchstart', (e) => {
+            no.addEventListener('touchstart', (e) => {
                 e.preventDefault();
-                noBtn.style.position = 'fixed';
-                noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-                noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+                no.style.position = 'fixed';
+                no.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+                no.style.top = Math.random() * (window.innerHeight - 50) + 'px';
             });
         }
 
-        async function showGift() {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            await switchContent(`
-                <h1>Wiedziałem! 🥰❤️</h1>
-                <div class="gift-box" onclick="openGift()">🎁</div>
-                <p>Kliknij w prezent!</p>
-            `);
+        function showGift() {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#ff4d6d', '#ffffff', '#ff8fa3'] });
+            document.getElementById('main-card').innerHTML = `
+                <h1>HURA! 🥰❤️</h1>
+                <p>Czekałem na tę odpowiedź!</p>
+                <div class="gift-box" onclick="openVoucher()">🎁</div>
+                <p>Kliknij w prezent, Okruszku!</p>
+            `;
         }
 
-        function openGift() {
-            confetti({ particleCount: 100, spread: 100, origin: { y: 0.7 }, colors: ['#ff4d6d', '#ffffff'] });
-            switchContent(`
-                <h2 style="color:var(--mc-red)">Twoja Nagroda 🎫</h2>
+        function openVoucher() {
+            confetti({ particleCount: 80, spread: 100, origin: { y: 0.8 } });
+            document.getElementById('main-card').innerHTML = `
+                <h2 style="color:var(--val-red); margin-bottom:5px;">Prezent Walentynkowy 🧧</h2>
                 <div class="voucher">
-                    <h1 style="font-size:1.5rem;">Wspólna kolacja i masaż! 🍝💆‍♀️</h1>
+                    <h1 style="font-size:1.4rem; margin:0;">Wspólna kolacja i masaż! 🍝💆‍♀️</h1>
                 </div>
-                <p style="margin-top:20px;">Kocham Cię najbardziej na świecie! ❤️</p>
-                <p style="font-size:0.8rem; opacity:0.6">Bilet jest bezterminowy 😘</p>
-            `);
+                <p style="margin-top:20px; font-weight:600;">Kocham Cię najbardziej! ❤️</p>
+                <p style="font-size:0.7rem; opacity:0.5;">Bilet wstępu na najlepszy wieczór świata!</p>
+            `;
         }
 
-        createBackgroundHearts();
+        createHearts();
     </script>
 </body>
 </html>
