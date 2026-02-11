@@ -1,67 +1,32 @@
-const questions = [
-  {
-    q: "Kiedy się poznaliśmy? 😊",
-    options: ["W lecie", "W zimie", "Wiosną"],
-    correct: 0
-  },
-  {
-    q: "Jaki jest Twój ulubiony kolor? (testuję czy uważam! 😜)",
-    options: ["Różowy", "Niebieski", "Czarny"],
-    correct: 1 // Zmień index na poprawny
-  }
-];
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const message = document.getElementById('message');
 
-let currentQuestion = 0;
+let clickCount = 0;
 
-const quizContainer = document.getElementById('quiz-container');
-const finalContainer = document.getElementById('final-container');
-const qText = document.getElementById('question-text');
-const optContainer = document.getElementById('options-container');
+noBtn.addEventListener('click', () => {
+    clickCount++;
 
-function loadQuestion() {
-  const data = questions[currentQuestion];
-  qText.innerText = data.q;
-  optContainer.innerHTML = '';
-  
-  data.options.forEach((opt, index) => {
-    const btn = document.createElement('button');
-    btn.innerText = opt;
-    btn.classList.add('opt-btn');
-    btn.onclick = () => checkAnswer(index);
-    optContainer.appendChild(btn);
-  });
-}
-
-function checkAnswer(index) {
-  if (index === questions[currentQuestion].correct) {
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-      loadQuestion();
-    } else {
-      quizContainer.style.display = 'none';
-      finalContainer.style.display = 'block';
+    // Faza 1: Zła odpowiedź (do 4 kliknięć)
+    if (clickCount <= 4) {
+        let angryEmojis = "😠".repeat(clickCount); // Dodaje jedną emotkę więcej za każdym razem
+        message.style.color = "#d32f2f"; // Ciemnoczerwony kolor tekstu
+        message.innerText = `Zła odpowiedź! ${angryEmojis}`;
+    } 
+    // Faza 2: Smutek (powyżej 4 kliknięć)
+    else {
+        let sadEmojis = "😢".repeat(clickCount - 4); // Zaczynamy dodawać smutne buźki
+        message.style.color = "#1565c0"; // Niebieski kolor smutku
+        message.innerText = `Teraz to mi już smutno... ${sadEmojis} 💔`;
     }
-  } else {
-    alert("Oj tam, spróbuj jeszcze raz! 😘");
-  }
-}
-
-// Obsługa przycisku NIE (ucieczka)
-const noBtn = document.getElementById('no');
-noBtn.addEventListener('mouseover', () => {
-  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
 });
 
-// Obsługa przycisku TAK
-document.getElementById('yes').addEventListener('click', () => {
-  document.body.innerHTML = "<h1>Wiedziałem! Do zobaczenia 14 lutego! ❤️🌹</h1>";
-  document.body.style.fontSize = "2rem";
-  document.body.style.color = "#ff4d6d";
-  document.body.style.textAlign = "center";
+yesBtn.addEventListener('click', () => {
+    document.body.innerHTML = `
+        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh;">
+            <h1 style="font-size:4rem; color:#ff4d6d;">Wiedziałem Okruszku! ❤️🍪</h1>
+            <p style="font-size:2rem;">Do zobaczenia! 😘</p>
+        </div>
+    `;
+    // Opcjonalnie: odpalamy konfetti jeśli chcesz, ale na razie prosty tekst
 });
-
-loadQuestion();
