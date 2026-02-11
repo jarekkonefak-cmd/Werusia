@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dla mojego Okruszka ❤️</title>
+    <title>Quiz dla Okruszka ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Czy zostaniesz moją walentynką Okruszku? 🍪❤️</h1>
-        
-        <div class="buttons">
-            <button id="yesBtn">TAK! 🥰</button>
-            <button id="noBtn">Nie</button>
+    <div class="container" id="game-container">
+        <div id="content">
+            <h1>Cześć Okruszku! ❤️</h1>
+            <p>Zanim zadam Ci ważne pytanie, sprawdźmy, jak dobrze mnie znasz!</p>
+            <button class="action-btn" onclick="startGame()">Zaczynamy!</button>
         </div>
-
-        <div id="message" class="message"></div>
     </div>
 
     <script src="script.js"></script>
