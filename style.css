@@ -1,0 +1,40 @@
+css
+
+
+body {
+  background: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Comic Sans MS", cursive;
+}
+.container {
+  text-align: center;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#yes {
+  background-color: #ff4d6d;
+  color: white;
+}
+#yes:hover {
+  background-color: #ff1e4b;
+}
+#no {
+  background-color: #ccc;
+}
+#no:hover {
+  background-color: #999;
+}
