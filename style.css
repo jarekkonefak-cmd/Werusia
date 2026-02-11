@@ -1,40 +1,56 @@
-css
-
-
 body {
-  background: pink;
+  background: #ffe5ec;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: "Comic Sans MS", cursive;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 .container {
   text-align: center;
   background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.3);
+  max-width: 400px;
+  width: 90%;
 }
+
+h1, h2 { color: #ff4d6d; }
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
 button {
-  margin: 10px;
-  padding: 15px 30px;
+  padding: 15px 25px;
   font-size: 18px;
   border: none;
-  border-radius: 10px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.2s, background-color 0.3s;
 }
+
+.opt-btn {
+  background-color: #ffb3c1;
+  color: white;
+}
+
+.opt-btn:hover { background-color: #ff758f; }
+
 #yes {
   background-color: #ff4d6d;
   color: white;
+  font-weight: bold;
+  font-size: 22px;
 }
-#yes:hover {
-  background-color: #ff1e4b;
-}
+
 #no {
-  background-color: #ccc;
-}
-#no:hover {
-  background-color: #999;
+  background-color: #adb5bd;
+  color: white;
 }
